@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    //id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'suhyeon'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.2'
+    
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'suhyeon.Main'
+        )
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.runtimeClasspath.collect { file ->
+            file.isDirectory() ? file : zipTree(file)
+        }
+    }
+}
+
+/*shadowJar {
+    archiveClassifier.set('')
+}*/
+
+test {
+    useJUnitPlatform()
+}

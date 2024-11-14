@@ -1,24 +1,23 @@
 plugins {
-    id 'java'
-    //id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id "java"
 }
 
-group = 'suhyeon'
-version = '1.0-SNAPSHOT'
+group = "suhyeon"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.2'
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     
 }
 
 jar {
     manifest {
         attributes(
-                'Main-Class': 'suhyeon.Main'
+                "Main-Class": "suhyeon.Main"
         )
     }
 
@@ -30,10 +29,6 @@ jar {
         }
     }
 }
-
-/*shadowJar {
-    archiveClassifier.set('')
-}*/
 
 test {
     useJUnitPlatform()

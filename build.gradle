@@ -1,0 +1,35 @@
+plugins {
+    id "java"
+}
+
+group = "suhyeon"
+version = "1.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": "suhyeon.Main"
+        )
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.runtimeClasspath.collect { file ->
+            file.isDirectory() ? file : zipTree(file)
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

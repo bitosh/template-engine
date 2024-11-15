@@ -77,7 +77,7 @@ public class FileUtils {
         }
     }
 
-    public static Boolean exist(final String path) {
+    public static Boolean exists(final String path) {
         return new File(path).exists();
     }
 }

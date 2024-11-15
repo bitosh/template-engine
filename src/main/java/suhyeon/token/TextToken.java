@@ -1,9 +1,14 @@
 package suhyeon.token;
 
-import static suhyeon.token.TokenType.TEXT;
+import suhyeon.DataContext;
 
 public final class TextToken extends Token {
-    public TextToken(String value) {
-        super(TEXT, value);
+    public TextToken(final String directive) {
+        super(directive);
+    }
+
+    @Override
+    public String interpret(final DataContext context) {
+        return this.directive;
     }
 }

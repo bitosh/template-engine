@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static suhyeon.exception.TemplateEngineExceptionType.FOR_LOOP_NOT_CLOSED;
-import static suhyeon.exception.TemplateEngineExceptionType.INVALID_DIRECTIVE;
+import static suhyeon.exception.TemplateEngineExceptionType.DIRECTIVE_NOT_CLOSED;
 
 public class Tokenizer {
     public static final String START_DIRECTIVE = "<?";
@@ -55,11 +55,11 @@ public class Tokenizer {
         return tokens;
     }
 
-    private static boolean isVariableDirective(final String template, final Integer index) {
+    private static boolean isVariableDirective(final String template, final int index) {
         return template.startsWith(VARIABLE_START_DIRECTIVE, index);
     }
 
-    private static boolean isForLoopDirective(final String template, final Integer index) {
+    private static boolean isForLoopDirective(final String template, final int index) {
         return template.startsWith(FOR_START_DIRECTIVE, index);
     }
 
@@ -67,7 +67,7 @@ public class Tokenizer {
         return template.startsWith(END_FOR_DIRECTIVE, index);
     }
 
-    private static int findDirectiveEndForIndex(final String template, final Integer startIndex) {
+    private static int findDirectiveEndForIndex(final String template, final int startIndex) {
         int index = startIndex;
         int nestingLevel = 1;
         final int templateLength = template.length();
@@ -101,7 +101,7 @@ public class Tokenizer {
         final int endIndex = template.indexOf(END_DIRECTIVE, index);
 
         if (endIndex == -1) {
-            throw new TemplateEngineException(INVALID_DIRECTIVE);
+            throw new TemplateEngineException(DIRECTIVE_NOT_CLOSED);
         }
 
         return endIndex + END_DIRECTIVE.length();

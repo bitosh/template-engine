@@ -14,9 +14,10 @@ import static suhyeon.exception.TemplateEngineExceptionType.*;
 
 public class FileUtils {
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Charset DEFAULT_ENCODING = UTF_8;
 
     public static String read(final String path) {
-        return read(path, UTF_8);
+        return read(path, DEFAULT_ENCODING);
     }
 
     public static String read(final String path, final Charset encoding) {
@@ -28,7 +29,7 @@ public class FileUtils {
     }
 
     public static JsonNode readJson(final String path) {
-        return readJson(path, UTF_8);
+        return readJson(path, DEFAULT_ENCODING);
     }
 
     public static JsonNode readJson(final String path, final Charset encoding) {
@@ -66,7 +67,7 @@ public class FileUtils {
     }
 
     public static void write(final String path, final String content) {
-        write(path, content, UTF_8);
+        write(path, content, DEFAULT_ENCODING);
     }
 
     public static void write(final String path, final String content, final Charset encoding) {

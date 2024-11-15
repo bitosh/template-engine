@@ -4,14 +4,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import suhyeon.DataContext;
 import suhyeon.exception.TemplateEngineException;
 
-import static suhyeon.exception.TemplateEngineExceptionType.NULL_TOKEN_DIRECTIVE;
+import static suhyeon.exception.TemplateEngineExceptionType.TOKEN_DIRECTIVE_NOT_NULL;
 
 public sealed abstract class Token permits ForToken, VariableToken, TextToken {
     protected final String directive;
 
     protected Token(final String directive) {
         if (directive == null) {
-            throw new TemplateEngineException(NULL_TOKEN_DIRECTIVE);
+            throw new TemplateEngineException(TOKEN_DIRECTIVE_NOT_NULL);
         }
         this.directive = directive;
     }

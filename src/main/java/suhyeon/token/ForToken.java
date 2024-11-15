@@ -6,13 +6,11 @@ import suhyeon.DataContext;
 import java.util.ArrayList;
 import java.util.List;
 
-import static suhyeon.token.SyntaxType.END_DIRECTIVE;
-import static suhyeon.token.SyntaxType.LOOP_DIRECTIVE;
+import static suhyeon.token.Tokenizer.END_DIRECTIVE;
+import static suhyeon.token.Tokenizer.LOOP_DIRECTIVE;
 
 public final class ForToken extends Token {
     private final List<Token> child;
-
-    private static final String FOR_KEYWORD = "for";
 
     public ForToken(final String directive, final List<Token> child) {
         super(directive);
@@ -22,8 +20,8 @@ public final class ForToken extends Token {
     @Override
     public String interpret(final DataContext context) {
         StringBuilder result = new StringBuilder();
-        final String[] forDirective = this.directive.substring(this.directive.indexOf(LOOP_DIRECTIVE.getSyntax()),
-                        this.directive.indexOf(END_DIRECTIVE.getSyntax())).split(" ");
+        final String[] forDirective = this.directive.substring(this.directive.indexOf(LOOP_DIRECTIVE), this.directive.indexOf(END_DIRECTIVE))
+                .split(" ");
         final String variable = forDirective[1];
         final List<JsonNode> loopData = findDataForLoop(forDirective[3], context);
         for (JsonNode jsonNode : loopData) {

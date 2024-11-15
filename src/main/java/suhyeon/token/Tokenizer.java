@@ -9,11 +9,12 @@ import static suhyeon.exception.TemplateEngineExceptionType.FOR_LOOP_NOT_CLOSED;
 import static suhyeon.exception.TemplateEngineExceptionType.INVALID_DIRECTIVE;
 
 public class Tokenizer {
-    private static final String START_DIRECTIVE = "<?";
-    private static final String END_DIRECTIVE = "?>";
-    private static final String VARIABLE_START_DIRECTIVE = "<?=";
-    private static final String FOR_START_DIRECTIVE = "<? for";
-    private static final String END_FOR_DIRECTIVE = "<? endfor ?>";
+    public static final String START_DIRECTIVE = "<?";
+    public static final String END_DIRECTIVE = "?>";
+    public static final String LOOP_DIRECTIVE = "for";
+    public static final String VARIABLE_START_DIRECTIVE = "<?=";
+    public static final String FOR_START_DIRECTIVE = "<? for";
+    public static final String END_FOR_DIRECTIVE = "<? endfor ?>";
 
     public static List<Token> tokenize(final String template) {
         if (template == null) {
